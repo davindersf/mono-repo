@@ -4,6 +4,9 @@ import {LoginDto, User} from '../models';
 import {UserRepository} from '../repositories';
 import * as jwt from 'jsonwebtoken';
 import {authorize} from 'loopback4-authorization';
+import {AuthenticateErrorKeys} from '@sourceloop/core';
+import * as bcrypt from 'bcrypt';
+import {AuthErrorKeys} from 'loopback4-authentication';
 
 export class AuthController {
   constructor(
@@ -45,12 +48,12 @@ export class AuthController {
       },
     });
 
-    if (!user) {
-      throw new HttpErrors.NotFound('User not found');
+    if (!user || user.deleted) {
+      throw new HttpErrors.Unauthorized(AuthenticateErrorKeys.UserDoesNotExist);
     }
 
-    if (user.password !== loginDto.password) {
-      throw new HttpErrors.Unauthorized('Invalid credentials');
+    if (!(await bcrypt.compare(loginDto.password, user.password))) {
+      throw new HttpErrors.Unauthorized(AuthErrorKeys.InvalidCredentials);
     }
 
     // eslint-disable-next-line

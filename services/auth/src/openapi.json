@@ -285,7 +285,7 @@
         "tags": [
           "UsersController"
         ],
-        "description": "",
+        "description": "\n\n| Permissions |\n| ------- |\n| CreateUser   |\n",
         "responses": {
           "200": {
             "description": "User model instance",
