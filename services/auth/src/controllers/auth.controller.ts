@@ -1,6 +1,6 @@
 import {repository} from '@loopback/repository';
 import {HttpErrors, post, requestBody, response} from '@loopback/rest';
-import {LoginDto, User} from '../models';
+import {LoginDto} from '../models';
 import {UserRepository} from '../repositories';
 import * as jwt from 'jsonwebtoken';
 import {authorize} from 'loopback4-authorization';
@@ -56,9 +56,7 @@ export class AuthController {
       throw new HttpErrors.Unauthorized(AuthErrorKeys.InvalidCredentials);
     }
 
-    // eslint-disable-next-line
-    const {password, ...payload} = user.toObject() as User;
-
+    const payload = user.toJSON();
     const accessToken = jwt.sign(payload, process.env.JWT_SECRET!, {
       issuer: process.env.JWT_ISSUER,
       expiresIn: process.env.JWT_EXPIRY,

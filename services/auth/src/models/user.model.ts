@@ -42,6 +42,7 @@ export class User extends SoftDeleteEntity implements IAuthUser {
   @property({
     type: 'string',
     required: true,
+    hidden: true,
   })
   password: string;
 
