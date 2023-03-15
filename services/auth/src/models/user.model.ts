@@ -1,11 +1,12 @@
-import {Entity, model, property} from '@loopback/repository';
+import {model, property} from '@loopback/repository';
 import {IAuthUser} from 'loopback4-authentication';
+import {SoftDeleteEntity} from 'loopback4-soft-delete';
 import {PermissionKey} from '../enums';
 
 @model({
   name: 'users',
 })
-export class User extends Entity implements IAuthUser {
+export class User extends SoftDeleteEntity implements IAuthUser {
   @property({
     type: 'number',
     id: true,
@@ -55,6 +56,10 @@ export class User extends Entity implements IAuthUser {
     },
   })
   permissions: PermissionKey[];
+
+  getIdentifier() {
+    return this.username;
+  }
 
   constructor(data?: Partial<User>) {
     super(data);

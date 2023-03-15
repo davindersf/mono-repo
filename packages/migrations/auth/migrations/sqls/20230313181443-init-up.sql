@@ -13,6 +13,9 @@ CREATE TABLE lb.users (
 	email                varchar(150),
 	password             varchar(60)  NOT NULL,
 	permissions          varchar(60)[],
+	deleted              bool DEFAULT false NOT NULL,
+	deleted_on           timestamptz,
+	deleted_by           integer,
 
 	CONSTRAINT pk_user_id PRIMARY KEY ( id ),
 	CONSTRAINT idx_username UNIQUE ( username )

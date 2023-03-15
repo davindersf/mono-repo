@@ -285,7 +285,7 @@
         "tags": [
           "UsersController"
         ],
-        "description": "\n\n| Permissions |\n| ------- |\n| CreateUser   |\n",
+        "description": "",
         "responses": {
           "200": {
             "description": "User model instance",
@@ -431,6 +431,18 @@
         "title": "User",
         "type": "object",
         "properties": {
+          "deleted": {
+            "type": "boolean"
+          },
+          "deletedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedBy": {
+            "type": "string",
+            "nullable": true
+          },
           "id": {
             "type": "number"
           },
@@ -474,6 +486,18 @@
         "type": "object",
         "description": "(tsType: Omit<User, 'id'>, schemaOptions: { title: 'NewUser', exclude: [ 'id' ] })",
         "properties": {
+          "deleted": {
+            "type": "boolean"
+          },
+          "deletedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedBy": {
+            "type": "string",
+            "nullable": true
+          },
           "firstName": {
             "type": "string"
           },
@@ -515,6 +539,18 @@
         "type": "object",
         "description": "(tsType: UserWithRelations, schemaOptions: { includeRelations: true })",
         "properties": {
+          "deleted": {
+            "type": "boolean"
+          },
+          "deletedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedBy": {
+            "type": "string",
+            "nullable": true
+          },
           "id": {
             "type": "number"
           },
@@ -559,6 +595,18 @@
         "type": "object",
         "description": "(tsType: Partial<User>, schemaOptions: { partial: true })",
         "properties": {
+          "deleted": {
+            "type": "boolean"
+          },
+          "deletedOn": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedBy": {
+            "type": "string",
+            "nullable": true
+          },
           "id": {
             "type": "number"
           },
@@ -662,6 +710,15 @@
               {
                 "type": "object",
                 "properties": {
+                  "deleted": {
+                    "type": "boolean"
+                  },
+                  "deletedOn": {
+                    "type": "boolean"
+                  },
+                  "deletedBy": {
+                    "type": "boolean"
+                  },
                   "id": {
                     "type": "boolean"
                   },
@@ -691,6 +748,9 @@
                 "items": {
                   "type": "string",
                   "enum": [
+                    "deleted",
+                    "deletedOn",
+                    "deletedBy",
                     "id",
                     "firstName",
                     "lastName",
@@ -699,7 +759,7 @@
                     "password",
                     "permissions"
                   ],
-                  "example": "id"
+                  "example": "deleted"
                 },
                 "uniqueItems": true
               }
@@ -750,6 +810,15 @@
               {
                 "type": "object",
                 "properties": {
+                  "deleted": {
+                    "type": "boolean"
+                  },
+                  "deletedOn": {
+                    "type": "boolean"
+                  },
+                  "deletedBy": {
+                    "type": "boolean"
+                  },
                   "id": {
                     "type": "boolean"
                   },
@@ -779,6 +848,9 @@
                 "items": {
                   "type": "string",
                   "enum": [
+                    "deleted",
+                    "deletedOn",
+                    "deletedBy",
                     "id",
                     "firstName",
                     "lastName",
@@ -787,7 +859,7 @@
                     "password",
                     "permissions"
                   ],
-                  "example": "id"
+                  "example": "deleted"
                 },
                 "uniqueItems": true
               }
