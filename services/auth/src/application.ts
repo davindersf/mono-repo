@@ -119,6 +119,12 @@ export class AuthApplication extends BootMixin(
       components: {
         securitySchemes: SECURITY_SCHEME_SPEC,
       },
+      security: [
+        {
+          // secure all endpoints with 'HTTPBearer'
+          HTTPBearer: [],
+        },
+      ],
       servers: [{url: '/'}],
     });
   }

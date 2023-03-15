@@ -872,6 +872,11 @@
       }
     }
   },
+  "security": [
+    {
+      "HTTPBearer": []
+    }
+  ],
   "servers": [
     {
       "url": "/"
